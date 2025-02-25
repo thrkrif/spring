@@ -13,7 +13,7 @@ import java.util.Optional;
 service의 메서드 이름들은 비즈니스 로직에 가깝게 작성을 해야한다.
  */
 
-@Service
+
 public class MemberService {
     // 서비스를 만드려면 회원 리포지토리가 필요할거임.
     private final MemberRepository memberRepository;
@@ -21,7 +21,7 @@ public class MemberService {
 
     // Dependency Injection : DI , 의존 관계 주입
     // MemberService에서 MemberRepository를 만들지 않고 외부에서 주입 받음.
-    @Autowired
+
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }

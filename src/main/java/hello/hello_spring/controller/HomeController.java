@@ -10,7 +10,7 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/members/new")
+    @GetMapping("/members/newss")
     public String createForm(){
         return "members/createMemberForm";
     }
