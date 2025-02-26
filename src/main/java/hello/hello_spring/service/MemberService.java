@@ -5,6 +5,7 @@ import hello.hello_spring.repository.MemberRepository;
 import hello.hello_spring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +15,7 @@ service의 메서드 이름들은 비즈니스 로직에 가깝게 작성을 해
  */
 
 
+@Transactional
 public class MemberService {
     // 서비스를 만드려면 회원 리포지토리가 필요할거임.
     private final MemberRepository memberRepository;
