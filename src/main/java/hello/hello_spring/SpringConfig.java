@@ -1,5 +1,6 @@
 package hello.hello_spring;
 
+import hello.hello_spring.aop.TimeTraceAop;
 import hello.hello_spring.repository.*;
 import hello.hello_spring.service.MemberService;
 import jakarta.persistence.EntityManager;
@@ -17,6 +18,8 @@ import javax.sql.DataSource;
 @Configuration
 public class SpringConfig {
 
+
+    // jdbctemplate 방식
 //    private final DataSource dataSource;
 //
 //    @Autowired
@@ -24,27 +27,41 @@ public class SpringConfig {
 //        this.dataSource = dataSource;
 //    }
 
-    @PersistenceContext
-    private final EntityManager em;
+    // jpa 방식
+//    @PersistenceContext
+//    private final EntityManager em;
+//
+//    @Autowired
+//    public SpringConfig(EntityManager em) {
+//        this.em = em;
+//    }
+
+    // 스프링 데이터 jpa 방식
+    private final MemberRepository memberRepository;
 
     @Autowired
-    public SpringConfig(EntityManager em) {
-        this.em = em;
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     @Bean
     public MemberService memberService(){
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
-    @Bean
-    public MemberRepository memberRepository(){
+//    @Bean
+//    public TimeTraceAop timeTraceAop(){
+//        return new TimeTraceAop();
+//    }
 
-//         return new MemoryMemberRepository();
-//        return new JdbcMemberRepository(dataSource);
-//        return new JdbcTemplateMemberRepository(dataSource);
-        return new JpaMemberRepository(em);
-
-    }
+//    @Bean
+//    public MemberRepository memberRepository(){
+//
+////         return new MemoryMemberRepository();
+////        return new JdbcMemberRepository(dataSource);
+////        return new JdbcTemplateMemberRepository(dataSource);
+////        return new JpaMemberRepository(em);
+//
+//    }
 
 }
